@@ -1,0 +1,62 @@
+如果你的打印驱动是基于unidrv的，并且使用gdi管理的surface，
+除非具体的设备有特殊的图像格式等方面的要求，一般具体的绘图任务都是回调给gdi的。
+
+在解决具体的技术环节之前，必须对打印驱动的工作流程有一个清晰的认识。
+基于unidrv，使用gdi管理表面的驱动程序一般都有这样的处理流程：
+
+enabledriver
+enablePDEV-----init PDEV structure
+
+startdoc
+startpage
+if(use banding)
+{
+	startbanding
+	while(NOT at the end of page)
+	{
+		drawing(blt, path or text)
+		(pre-process, callback to unixxx, post-process)
+		nextband
+		if(use imageprocess)
+		{
+			imageprocess----可以在这里得到bmp数据
+			使用这个函数时注意和gpd file的配合
+		}
+	}
+}
+else
+{
+	drawing(blt, path or text)
+	(pre-process, callback to unixxx, post-process)
+	sendpage
+	if(use imageprocess)
+	{
+		imageprocess
+	}
+}
+enddoc
+
+disablePDEV
+disabledriver
+
+在清晰的了解了驱动程序的基本处理过程之后在深入的解决具体的技术环节，
+比上来什么都不清楚就过多地讨论细节要好的多。
+
+上面的流程可以有很多的变化，不过这些变化主要集中在drawing部分的
+pre-process、post-process和imageprocess（可以用IPrintOemUni接口的其它函数替代）
+部分，主体的框架基本就是这样。
+
+另外还可以将数据压缩等等加入到上面的流程当中。
+
+需要注意的是驱动程序是否使用banding是动态决定的，取决于数据量的大小，
+因此在nextband和sendpage函数中都要做好输出数据的准备。
+
+具体函数的使用方法你可以参考msdn文档中的相关部分。
+msdn->windows development->driver development kit->
+display and print drivers->print drivers and spool components
+里面有非常多重要的信息，你先把它们仔细研究一下吧
+尤其是print driver architecture（打印驱动的基本结构）、
+customizing microsoft print drivers（定制方法）和
+microsoft unidrv print driver（讲gpd file）这三部分
+
+你现在应该比较清楚在哪里做什么了 
