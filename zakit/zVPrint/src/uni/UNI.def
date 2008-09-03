@@ -1,0 +1,3 @@
+LIBRARY	    UNI
+EXPORTS     DllGetClassObject   PRIVATE
+            DllCanUnloadNow     PRIVATE

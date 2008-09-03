@@ -1,0 +1,184 @@
+*%
+*% @file sample.gpd
+*%
+*% W2kPrintDrvSample
+*%
+*% Copyright (C) 2004, terrificskyfox <terrificskyfox@yahoo.com.cn>
+*%
+*% This program is free software; you can redistribute it and/or modify
+*% it under the terms of the GNU General Public License as published by
+*% the Free Software Foundation; either version 2 of the License, or
+*% (at your option) any later version.
+*%
+*% This program is distributed in the hope that it will be useful,
+*% but WITHOUT ANY WARRANTY; without even the implied warranty of
+*% MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+*% GNU General Public License for more details.
+*%
+*% You should have received a copy of the GNU General Public License
+*% along with this program; if not, write to the Free Software
+*% Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+*%
+
+
+*GPDFileName: "SAMPLE.GPD"
+*GPDFileVersion: "1.0"
+*GPDSpecVersion: "1.0"
+*Include: "stdnames.gpd"
+*ModelName: "sample"
+*MasterUnits: PAIR(200, 200)
+*ResourceDLL: "unires.dll"
+*PrinterType: PAGE
+*CodePage: 936
+
+*%
+*% Orientation
+*%
+*Feature: Orientation
+{
+    *rcNameID: =ORIENTATION_DISPLAY
+    *DefaultOption: PORTRAIT
+
+    *Option: PORTRAIT
+    {
+        *rcNameID: =PORTRAIT_DISPLAY
+    }
+    *Option: LANDSCAPE_CC270
+    {
+        *rcNameID: =LANDSCAPE_DISPLAY
+    }
+}
+
+*%
+*% Input bin
+*%
+*Feature: InputBin
+{
+    *rcNameID: =PAPER_SOURCE_DISPLAY
+    *DefaultOption: MANUAL
+
+    *Option: MANUAL
+    {
+        *rcNameID: =MANUAL_FEED_DISPLAY
+    }
+}
+
+*%
+*% Resolution
+*%
+*Feature: Resolution
+{
+    *rcNameID: =RESOLUTION_DISPLAY
+    *DefaultOption: HIGH
+
+    *Option: HIGH
+    {
+        *Name: "200 x 200 " =DOTS_PER_INCH
+        *DPI: PAIR(200, 200)
+        *TextDPI: PAIR(200, 200)
+        *SpotDiameter: 100
+        *Command: CmdSendBlockData { *Cmd: "" }
+	}
+    *Option: LOW
+    {
+        *Name: "100 x 100 " =DOTS_PER_INCH
+        *DPI: PAIR(100, 100)
+        *TextDPI: PAIR(100, 100)
+        *SpotDiameter: 100
+        *Command: CmdSendBlockData { *Cmd: "" }
+    }
+}
+
+*%
+*% Paper size
+*%
+*Feature: PaperSize
+{
+    *rcNameID: =PAPER_SIZE_DISPLAY
+    *DefaultOption: A4
+
+    *Option: A4
+    {
+        *rcNameID: =RCID_DMPAPER_SYSTEM_NAME
+        *PrintableArea: PAIR(1654, 2338)
+        *PrintableOrigin: PAIR(0, 0)
+    }
+}
+
+*%
+*% Color mode
+*%
+*Feature: ColorMode
+{
+    *rcNameID: =COLOR_PRINTING_MODE_DISPLAY
+    *DefaultOption: MONO
+
+    *Option: MONO
+    {
+        *rcNameID: =MONO_DISPLAY
+        *DrvBPP: 1
+        *DevNumOfPlanes: 0
+        *DevBPP: 0
+        *IPCallbackID: 1
+        *Color?: FALSE
+    }
+    *Option: 24BPP
+    {
+        *rcNameID: =24BPP_DISPLAY
+        *DrvBPP: 24
+        *DevNumOfPlanes: 0
+        *DevBPP: 0
+        *IPCallbackID: 24
+        *Color?: TRUE
+    }
+}
+
+*%
+*% Halftone
+*%
+*Feature: Halftone
+{
+    *rcNameID: =HALFTONING_DISPLAY
+    *DefaultOption: HT_PATSIZE_AUTO
+
+    *Option: HT_PATSIZE_AUTO
+    {
+        *rcNameID: =HT_AUTO_SELECT_DISPLAY
+    }
+    *Option: HT_PATSIZE_16x16_M
+    {
+        *Name: "16x16"
+    }
+    *Option: HT_PATSIZE_14x14_M
+    {
+        *Name: "14x14"
+    }
+    *Option: HT_PATSIZE_12x12_M
+    {
+        *Name: "12x12"
+    }
+    *Option: HT_PATSIZE_10x10_M
+    {
+        *Name: "10x10"
+    }
+    *Option: HT_PATSIZE_8x8_M
+    {
+        *Name: "8x8"
+    }
+    *Option: HT_PATSIZE_6x6_M
+    {
+        *Name: "6x6"
+    }
+    *Option: HT_PATSIZE_4x4_M
+    {
+        *Name: "4x4"
+    }
+}
+
+*Command: CmdCR: ""
+*Command: CmdLF: ""
+*Command: CmdFF: ""
+
+*RotateCoordinate?: TRUE
+*RotateFont?: TRUE
+*RotateRaster?: TRUE

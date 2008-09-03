@@ -1,0 +1,87 @@
+;
+; @file sample.inf
+;
+; W2kPrintDrvSample
+;
+; Copyright (C) 2004, terrificskyfox <terrificskyfox@yahoo.com.cn>
+;
+; This program is free software; you can redistribute it and/or modify
+; it under the terms of the GNU General Public License as published by
+; the Free Software Foundation; either version 2 of the License, or
+; (at your option) any later version.
+;
+; This program is distributed in the hope that it will be useful,
+; but WITHOUT ANY WARRANTY; without even the implied warranty of
+; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+; GNU General Public License for more details.
+;
+; You should have received a copy of the GNU General Public License
+; along with this program; if not, write to the Free Software
+; Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+;
+
+
+[Version]
+Signature="$Windows NT$"
+Provider=%AUTHOR%
+LayoutFile=ntprint.inf
+ClassGUID={4D36E979-E325-11CE-BFC1-08002BE10318}
+Class=Printer
+DriverVer=10/22/2003
+
+;
+; Manufacturer section
+;
+[Manufacturer]
+"terrificskyfox"
+
+;
+; Model sections
+;
+[terrificskyfox]
+"sample"         = DRIVER_SAMPLE
+
+;
+; Installer Sections
+;
+[DRIVER_SAMPLE]
+CopyFiles=@sample.gpd
+CopyFiles=@sample.ini
+CopyFiles=SAMPLEFILES
+DataSection=UNIDRV_DATA
+DataFile=sample.gpd
+Include=NTPRINT.INF
+Needs=UNIDRV.OEM
+
+;
+; Copy Sections
+;
+[SAMPLEFILES]
+UNI.DLL
+UI.DLL
+
+;
+; Location of source files not in Layout.inf
+;
+[SourceDisksFiles]
+uni.dll     = 1,,,,,,,11,3
+ui.dll      = 1,,,,,,,11,3
+
+;
+; Call SetupSetDirectoryId with 66000 to set the target directory at runtime
+; (depending on which environment drivers are getting installed)
+;
+[DestinationDirs]
+DefaultDestDir=66000
+
+;
+; Control Flags
+;
+[ControlFlags]
+ExcludeFromSelect = 2369
+
+;
+; Localizable Strings
+;
+[Strings]
+AUTHOR="terrificskyfox <terrificskyfox@yahoo.com.cn>

@@ -1,0 +1,64 @@
+!IF 0
+
+@file ui/sources
+    Abstract:
+        This file specifies the target component being built and the list of
+        sources files needed to build that component.  Also specifies optional
+        compiler switches and libraries that are unique for the component being
+        built.
+
+W2kPrintDrvSample
+
+Copyright (C) 2004, terrificskyfox <terrificskyfox@yahoo.com.cn>
+
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+
+!ENDIF
+
+
+TARGETNAME=UI
+TARGETPATH=..
+TARGETTYPE=DYNLINK
+
+DLLENTRY=_DllMainCRTStartup
+DLLBASE=0x50000000
+
+USE_MSVCRT=1
+USE_CTRLDLL=1
+
+PRECOMPILED_CXX=1
+PRECOMPILED_INCLUDE=precomp.h
+PRECOMPILED_PCH=precomp.pch
+PRECOMPILED_OBJ=precomp.obj
+
+# To build debug version add -D_DEBUG to C_DEFINES line below
+C_DEFINES=$(C_DEFINES) -DUSERMODE_DRIVER -D_UNICODE -DUNICODE -D_DEBUG
+
+
+TARGETLIBS=    $(SDK_LIB_PATH)\kernel32.lib   \
+               $(SDK_LIB_PATH)\user32.lib     \
+               $(SDK_LIB_PATH)\uuid.lib
+
+
+INCLUDES=.;$(SDK_INC_PATH)\MFC42
+
+SOURCES= debug.cpp     \
+         devmode.cpp   \
+         dllentry.cpp  \
+         globals.cpp   \
+         intrface.cpp  \
+         oemui.cpp     \
+         pageclbk.cpp  \
+         ui.rc
