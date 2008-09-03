@@ -1,0 +1,16 @@
+Load, show and convert miscellaneous file-formats using freeimage:
+http://www.codeproject.com/KB/graphics/graphicsuite.aspx
+
+LibTIFF - TIFF Library and Utilities
+http://www.libtiff.org/
+http://www.remotesensing.org/libtiff/
+(镜像)http://libtiff.maptools.org/
+
+用 libtiff 进行图形编程 - 操纵 TIFF 图像的 C 库
+http://www.ibm.com/developerworks/cn/linux/guitoolkit/libtiff/index.html
+
+libtiff-3.5.7 包配置和内容
+http://docs.huihoo.com/gnu_linux/lfs/blfs-1.0/general/libtiff.html
+
+VC下使用LibTiff处理TIFF文件
+http://blog.csdn.net/mirror_hc/archive/2007/07/26/1710391.aspx
