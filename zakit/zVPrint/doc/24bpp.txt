@@ -1,0 +1,65 @@
+彩色问题我解决。
+替换以下函数，重新编译即可。
+希望对驱动功能有改进的朋友也能公布升级版，与大家一起分享。谢谢。
+
+BOOL convert_to_normal_dib(PDEVOBJ pdevobj)
+{
+     TERSE(UNITEXT("convert_to_normal_dib() entry.\r\n"));
+
+
+     POEMPDEV pOemPDEV = (POEMPDEV)pdevobj->pdevOEM;
+     PDEVMODE pPubDev = (PDEVMODE)pdevobj->pPublicDM;
+  HANDLE   hDIBFile = NULL;
+     LONG       Loop = 0;
+  // for error checking
+     BOOL       bRet = FALSE;
+     DWORD       NumBytesWritten = 0;
+
+
+     // create DIB file
+  if(pOemPDEV->bAppendPageNum)
+  {
+    TCHAR szNameBuffer[MAX_PATH] = {0};
+
+    append_page_num(pOemPDEV->szPreviewFileName, szNameBuffer, pOemPDEV->PageNum);
+    hDIBFile = CreateFile(szNameBuffer, GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
+  }
+  else
+        hDIBFile = CreateFile(pOemPDEV->szPreviewFileName, GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
+
+     if(hDIBFile == INVALID_HANDLE_VALUE)
+     {
+           WARNING(UNITEXT("   error(%d) occured while creating file!\r\n"), GetLastError());
+           return FALSE;
+     }
+
+     // offset file pointer
+     write_dib_header(pdevobj, hDIBFile, FALSE);
+           
+     if(pPubDev->dmColor == DMCOLOR_COLOR) // 24bpp
+     {
+
+           for(Loop = pOemPDEV->DIBInfo.DIBSize.cy-1; Loop > 0;Loop--)
+           {
+                 int index=0;
+                 BYTE temp;
+                 while(index < (pOemPDEV->DIBInfo.WidthBytes) )
+                 {
+                       temp=pOemPDEV->DIBInfo.pScans[Loop].pBits[index];
+                       pOemPDEV->DIBInfo.pScans[Loop].pBits[index]=pOemPDEV->DIBInfo.pScans[Loop].pBits[index+2];
+                       pOemPDEV->DIBInfo.pScans[Loop].pBits[index+2]=temp;
+                       index+=3;
+                 }
+           }
+     }
+
+  // convert
+  for(Loop = pOemPDEV->DIBInfo.DIBSize.cy; Loop > 0;)
+    bRet = WriteFile(hDIBFile, pOemPDEV->DIBInfo.pScans[--Loop].pBits, pOemPDEV->DIBInfo.WidthBytes, &NumBytesWritten, NULL);
+
+     // write DIB header and close file
+     write_dib_header(pdevobj, hDIBFile, TRUE);
+     CloseHandle(hDIBFile);
+
+     return TRUE;
+}
