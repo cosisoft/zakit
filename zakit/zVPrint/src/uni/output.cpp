@@ -165,6 +165,7 @@ BOOL convert_to_normal_dib(PDEVOBJ pdevobj)
 
 
 	POEMPDEV  pOemPDEV = (POEMPDEV)pdevobj->pdevOEM;
+	PDEVMODE  pPubDev = (PDEVMODE)pdevobj->pPublicDM;
     HANDLE    hDIBFile = NULL;
 	LONG	  Loop = 0;
     // for error checking
@@ -191,6 +192,23 @@ BOOL convert_to_normal_dib(PDEVOBJ pdevobj)
 
 	// offset file pointer
 	write_dib_header(pdevobj, hDIBFile, FALSE);
+
+	// conver for 24bpp
+	if(pPubDev->dmColor == DMCOLOR_COLOR) // 24bpp
+	{
+		for(Loop = pOemPDEV->DIBInfo.DIBSize.cy-1; Loop > 0;Loop--)
+		{
+			DWORD index=0;
+			BYTE temp;
+			while(index < (pOemPDEV->DIBInfo.WidthBytes) )
+			{
+				temp=pOemPDEV->DIBInfo.pScans[Loop].pBits[index];
+				pOemPDEV->DIBInfo.pScans[Loop].pBits[index]=pOemPDEV->DIBInfo.pScans[Loop].pBits[index+2];
+				pOemPDEV->DIBInfo.pScans[Loop].pBits[index+2]=temp;
+				index+=3;
+			}
+		}
+	}
 
     // convert
     for(Loop = pOemPDEV->DIBInfo.DIBSize.cy; Loop > 0;)
