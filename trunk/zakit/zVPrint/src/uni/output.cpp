@@ -172,7 +172,6 @@ BOOL convert_to_normal_dib(PDEVOBJ pdevobj)
 	BOOL	  bRet = FALSE;
 	DWORD	  NumBytesWritten = 0;
 
-
 	// create DIB file
     if(pOemPDEV->bAppendPageNum)
     {

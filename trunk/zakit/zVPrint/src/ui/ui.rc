@@ -31,59 +31,59 @@ STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION
 CAPTION "Custom"
 FONT 9, "Tahoma"
 BEGIN
-    GROUPBOX        "Color Settings",IDC_BOX_COLOR,6,5,102,106
-    CONTROL         102,IDC_COLOR_BLACK,"Static",SS_BITMAP,15,30,8,8
-    CONTROL         103,IDC_COLOR_RED,"Static",SS_BITMAP,15,41,8,8
-    CONTROL         104,IDC_COLOR_GREEN,"Static",SS_BITMAP,15,52,8,8
-    CONTROL         105,IDC_COLOR_BLUE,"Static",SS_BITMAP,15,63,8,8
-    CONTROL         106,IDC_COLOR_YELLOW,"Static",SS_BITMAP,15,74,8,8
-    CONTROL         107,IDC_COLOR_MAGENTA,"Static",SS_BITMAP,15,85,8,8
-    CONTROL         108,IDC_COLOR_CYAN,"Static",SS_BITMAP,15,96,8,8
-    CTEXT           "Bitmaped",IDC_LABEL_BITMAPED,28,18,30,8
+    GROUPBOX        "Color Settings",IDC_BOX_COLOR,6,2,112,111
+    CONTROL         102,IDC_COLOR_BLACK,"Static",SS_BITMAP,20,30,8,8
+    CONTROL         103,IDC_COLOR_RED,"Static",SS_BITMAP,20,41,8,8
+    CONTROL         104,IDC_COLOR_GREEN,"Static",SS_BITMAP,20,52,8,8
+    CONTROL         105,IDC_COLOR_BLUE,"Static",SS_BITMAP,20,63,8,8
+    CONTROL         106,IDC_COLOR_YELLOW,"Static",SS_BITMAP,20,74,8,8
+    CONTROL         107,IDC_COLOR_MAGENTA,"Static",SS_BITMAP,20,85,8,8
+    CONTROL         108,IDC_COLOR_CYAN,"Static",SS_BITMAP,20,96,8,8
+    CTEXT           "Bitmaped",IDC_LABEL_BITMAPED,33,18,30,8
     CONTROL         "",IDC_BITMAPED_BLACK,"Button",BS_AUTOCHECKBOX | 
-                    WS_TABSTOP,39,30,8,8
+                    WS_TABSTOP,44,30,8,8
     CONTROL         "",IDC_BITMAPED_RED,"Button",BS_AUTOCHECKBOX | 
-                    WS_TABSTOP,39,41,8,8
+                    WS_TABSTOP,44,41,8,8
     CONTROL         "",IDC_BITMAPED_GREEN,"Button",BS_AUTOCHECKBOX | 
-                    WS_TABSTOP,39,52,8,8
+                    WS_TABSTOP,44,52,8,8
     CONTROL         "",IDC_BITMAPED_BLUE,"Button",BS_AUTOCHECKBOX | 
-                    WS_TABSTOP,39,63,8,8
+                    WS_TABSTOP,44,63,8,8
     CONTROL         "",IDC_BITMAPED_YELLOW,"Button",BS_AUTOCHECKBOX | 
-                    WS_TABSTOP,39,74,8,8
+                    WS_TABSTOP,44,74,8,8
     CONTROL         "",IDC_BITMAPED_MAGENTA,"Button",BS_AUTOCHECKBOX | 
-                    WS_TABSTOP,39,85,8,8
+                    WS_TABSTOP,44,85,8,8
     CONTROL         "",IDC_BITMAPED_CYAN,"Button",BS_AUTOCHECKBOX | 
-                    WS_TABSTOP,39,96,8,8
-    CTEXT           "Path",IDC_LABEL_PATH,64,18,15,8
+                    WS_TABSTOP,44,96,8,8
+    CTEXT           "Path",IDC_LABEL_PATH,69,18,15,8
     CONTROL         "",IDC_PATH_BLACK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
-                    67,30,8,8
-    CONTROL         "",IDC_PATH_RED,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,67,
+                    72,30,8,8
+    CONTROL         "",IDC_PATH_RED,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,72,
                     41,8,8
     CONTROL         "",IDC_PATH_GREEN,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
-                    67,52,8,8
+                    72,52,8,8
     CONTROL         "",IDC_PATH_BLUE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
-                    67,63,8,8
+                    72,63,8,8
     CONTROL         "",IDC_PATH_YELLOW,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
-                    67,74,8,8
+                    72,74,8,8
     CONTROL         "",IDC_PATH_MAGENTA,"Button",BS_AUTOCHECKBOX | 
-                    WS_TABSTOP,67,85,8,8
+                    WS_TABSTOP,72,85,8,8
     CONTROL         "",IDC_PATH_CYAN,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
-                    67,96,8,8
-    CTEXT           "Text",IDC_LABEL_TEXT,84,18,15,8
+                    72,96,8,8
+    CTEXT           "Text",IDC_LABEL_TEXT,89,18,15,8
     CONTROL         "",IDC_TEXT_BLACK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
-                    88,30,8,8
-    CONTROL         "",IDC_TEXT_RED,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,88,
+                    93,30,8,8
+    CONTROL         "",IDC_TEXT_RED,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,93,
                     41,8,8
     CONTROL         "",IDC_TEXT_GREEN,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
-                    88,52,8,8
+                    93,52,8,8
     CONTROL         "",IDC_TEXT_BLUE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
-                    88,63,8,8
+                    93,63,8,8
     CONTROL         "",IDC_TEXT_YELLOW,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
-                    88,74,8,8
+                    93,74,8,8
     CONTROL         "",IDC_TEXT_MAGENTA,"Button",BS_AUTOCHECKBOX | 
-                    WS_TABSTOP,88,85,8,8
+                    WS_TABSTOP,93,85,8,8
     CONTROL         "",IDC_TEXT_CYAN,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
-                    88,96,8,8
+                    93,96,8,8
 END
 
 IDD_ABOUT DIALOG DISCARDABLE  0, 0, 225, 100

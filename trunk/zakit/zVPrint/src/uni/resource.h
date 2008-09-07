@@ -6,6 +6,7 @@
 #define IDS_BROWSE_ERROR                2
 #define IDS_FILENAME_INVALID            3
 #define IDD_OUTPUT                      101
+#define IDD_DIALOG1                     102
 #define IDC_BOX                         1000
 #define IDC_LABEL_FILENAME              1001
 #define IDC_FILENAME                    1002
@@ -16,7 +17,7 @@
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        102
+#define _APS_NEXT_RESOURCE_VALUE        103
 #define _APS_NEXT_COMMAND_VALUE         40001
 #define _APS_NEXT_CONTROL_VALUE         1005
 #define _APS_NEXT_SYMED_VALUE           101
