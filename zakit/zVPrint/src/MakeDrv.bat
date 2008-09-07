@@ -7,7 +7,6 @@ if "%1" == "." (
 	set TmpDir="%1"
 )
 
-set DDKROOT=N:\WINDDK\3790
 if not exist %DDKROOT%\bin\setenv.bat goto usage
 
 CALL %DDKROOT%\bin\setenv.bat %DDKROOT% %2 %3
@@ -15,6 +14,9 @@ CALL %DDKROOT%\bin\setenv.bat %DDKROOT% %2 %3
 cd /d %TmpDir%
 
 build.exe -b -w -g %4 %5 %6 %7 %8
+
+cd ..
+copy2sys.bat
 
 goto exit
 

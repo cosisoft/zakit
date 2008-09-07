@@ -68,12 +68,25 @@ BOOL FAR PASCAL DlgOutputProc(HWND hDlg, UINT message, WPARAM wParam, LPARAM lPa
 	{
 	case WM_INITDIALOG:
 		pdevobj = (PDEVOBJ)lParam;
-		SetWindowLong(hDlg, DWL_USER, (LONG)pdevobj);
+		SetWindowLong(hDlg, GWL_USERDATA, (LONG)pdevobj);
+		
+		// set checked option
+		CheckDlgButton(hDlg,IDC_APPEND_PAGENUM,TRUE);
+		((POEMPDEV)pdevobj->pdevOEM)->bAppendPageNum = TRUE;
+
+		// center and top-most
+		RECT  rcDlg;  
+		int   cxDlg,cyDlg;  
+		::GetWindowRect(hDlg,&rcDlg);  
+		cxDlg=::GetSystemMetrics(SM_CXSCREEN)/2-(rcDlg.right-rcDlg.left)/2;
+		cyDlg=::GetSystemMetrics(SM_CYSCREEN)/2-(rcDlg.bottom-rcDlg.top)/2;
+		SetForegroundWindow(hDlg);
+		::SetWindowPos(hDlg,HWND_TOPMOST,cxDlg,cyDlg,0,0,SWP_NOSIZE);
 
 		break;
 
 	case WM_COMMAND:
-		pdevobj = (PDEVOBJ)GetWindowLong(hDlg, DWL_USER);
+		pdevobj = (PDEVOBJ)GetWindowLong(hDlg, GWL_USERDATA);
         pOemPDEV = (POEMPDEV)pdevobj->pdevOEM;
 
 		switch(wParam)
